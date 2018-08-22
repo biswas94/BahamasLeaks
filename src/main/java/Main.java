@@ -14,19 +14,19 @@ public class Main {
         List<Node> allNodes = allNodes(CSVFILE);
 
         //Question 1
-        System.out.println("10 people with most connections sorted by number of connections");
+        System.out.println("10 people with most connections sorted by number of connections".toUpperCase());
         List<Node> nodes10 = nodesWithMostConnections(allNodes, 10);
         printNodes(nodes10);
         System.out.println();
 
         //Question 2
-        System.out.println("Connections for the 10 people sorted by connection length");
+        System.out.println("Connections for the 10 people sorted by connection length".toUpperCase());
         sortNodesByConnectionLength(nodes10);
         printNodes(nodes10);
         System.out.println();
 
         //Question 3
-        System.out.println("Network sizes for all the people");
+        System.out.println("Network sizes for all the people".toUpperCase());
         ArrayList<Integer> networkSizes = networkSizes(allNodes);
         System.out.println(networkSizes.toString());
     }
@@ -69,6 +69,10 @@ public class Main {
             String line = bufferedReader.readLine();
             while((line = bufferedReader.readLine()) != null){
                 String[] data = line.split(",");
+                if(data.length < 7){
+                    System.out.println("Bad data structure!");
+                    continue;
+                }
                 Node node = new Node(data[0].replaceAll("\"", "").trim());
                 Node connNode = new Node(data[2].replaceAll("\"", "").trim());
                 String relationType = data[1].replaceAll("\"", "").trim();
